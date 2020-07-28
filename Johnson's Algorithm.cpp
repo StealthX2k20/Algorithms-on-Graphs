@@ -226,8 +226,9 @@ int main()
           {
            if(graph[j][k] != node)
            {
-            dummy[j].pb(graph[j][k]);}
+            dummy[j].pb(graph[j][k]);
            }
+          }
       }
 
       rep(j, n) graph[j] = dummy[j];
@@ -251,7 +252,7 @@ int main()
       rep(j, n) dummy[j].clear();
     }
     
-    cout << "Total cycles are : " << cnt << "\n";
+    cout << "Total cycles are : " << cnt << "\n"; 
 
     return 0;
 }
