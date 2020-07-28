@@ -24,6 +24,20 @@ using namespace std;
 #define mxdepth 23 // FOR LCA til N = 1e6
 #define mxn 2000001
 
+/**
+
+*Author Deepak Mehrotra (StealthX2k20)
+
+*Finding all Cycles in a Directed Graph using Johnson's Algorithm
+
+*Time Complexity O(E + V) * (c + 1) where c is the number of cycles in the directed graph
+
+*Space Complexity O(E + V + s) where s is the sum of length of all cycles in the graph
+
+*References : https://github.com/mission-peace/interview/blob/master/src/com/interview/graph/AllCyclesInDirectedGraphJohnson.java
+
+**/
+
 mii node_num;
 map < loi, vii > comp_num;
 
@@ -149,6 +163,9 @@ int main()
 {
     loi n, m, u, v, node, vertx;
     
+    //n -> number of vertices
+    //m -> number of edges
+    
     cin >> n >> m;
     vii graph[n], rgraph[n];
     rep(i, m)
@@ -156,10 +173,12 @@ int main()
         cin >> u >> v;
         u--, v--;
         graph[u].pb(v);
-        rgraph[v].pb(u);
+        rgraph[v].pb(u); // this reverse graph is being made to find the SCCs of the directed graph using Kosaraju's Algorithm
     }
 
     vector < vii > SCC;
+    
+    // This is used to store the nodes in a storngly-connected-component
     vii scc;
 
     Kosaraju(graph, rgraph, n, m, SCC);
@@ -171,7 +190,6 @@ int main()
     stack <loi> stk;
     sii st;
     mii mp;
-    //sii hash_;
 
     rep(i, n)
     {
@@ -197,20 +215,17 @@ int main()
       cycleDFS(dummy, node, vis, stk, st, mp, node, cnt);
       
       rep(j, n) dummy[j].clear();
-     // hash_.insert(node);
       
       rep(j, n)
       {
-         // if(hash_.find(j) != hash_.end()) continue;
          if(j == node) continue;
 
           rep(k, graph[j].size())
           {
-          /*if(hash_.find(graph[j][k]) == hash_.end()) */
-          if(graph[j][k] != node)
-          {
-          dummy[j].pb(graph[j][k]);}
-         }
+           if(graph[j][k] != node)
+           {
+            dummy[j].pb(graph[j][k]);}
+           }
       }
 
       rep(j, n) graph[j] = dummy[j];
