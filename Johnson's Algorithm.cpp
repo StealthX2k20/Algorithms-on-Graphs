@@ -184,7 +184,9 @@ int main()
     Kosaraju(graph, rgraph, n, m, SCC);
     
     loi cnt = 0;
-    vii dummy[n];
+    
+    vii dummy[n]; // This is used to store the subgraph of the vertices belonging to the same strongly connected component
+    
     loi vis[n];
     
     stack <loi> stk;
