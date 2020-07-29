@@ -28,7 +28,7 @@ using namespace std;
 
 *Author Deepak Mehrotra (StealthX2k20)
 
-*Finding all Cycles in a Directed Graph using Johnson's Algorithm
+*Finding all Simple Cycles in a Directed Graph using Johnson's Algorithm
 
 *Time Complexity O(E + V) * (c + 1) where c is the number of cycles in the directed graph
 
